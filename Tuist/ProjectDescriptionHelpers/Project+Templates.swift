@@ -21,7 +21,8 @@ extension Project {
 
     /// Helper function to create a framework target and an associated unit test target
     private static func makeFrameworkTargets(name: String, platform: Platform) -> [Target] {
-        let sources = Target(name: name,
+        let sources = Target.target(name: name,
+                                    
                 platform: platform,
                 product: .framework,
                 bundleId: "io.tuist.\(name)",
@@ -29,7 +30,7 @@ extension Project {
                 sources: ["Targets/\(name)/Sources/**"],
                 resources: [],
                 dependencies: [])
-        let tests = Target(name: "\(name)Tests",
+        let tests = Target.target(name: "\(name)Tests",
                 platform: platform,
                 product: .unitTests,
                 bundleId: "io.tuist.\(name)Tests",
@@ -50,7 +51,7 @@ extension Project {
             "UILaunchStoryboardName": "LaunchScreen"
             ]
 
-        let mainTarget = Target(
+        let mainTarget = Target.target(
             name: name,
             platform: platform,
             product: .app,
